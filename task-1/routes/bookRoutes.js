@@ -16,6 +16,6 @@ router.route('/')
 router.route('/:id')
     .get(getBook)
     .put(updateBook)
-    .delete(deleteBook); // NEW: Handle DELETE requests
+    .delete(deleteBook);
 
 module.exports = router;

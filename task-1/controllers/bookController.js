@@ -25,26 +25,25 @@ const createBook = async (req, res) => {
 // @route   GET /api/books
 const getBooks = async (req, res) => {
     try {
-        // 1. Get the numbers from the URL (e.g., ?page=2&limit=5)
+        // Get the numbers from the URL (e.g., ?page=2&limit=5)
         // If the user doesn't provide them, we default to Page 1 and 10 books 
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
         
-        // 2. Calculate how many books to skip
+        // Calculate how many books to skip
         const skip = (page - 1) * limit;
 
-        // 3. Find the books, but apply skip and limit [cite: 11, 37]
+        // Find the booksbut apply skip and limit
         const books = await Book.find().skip(skip).limit(limit);
         
-        // 4. Get the total count
+        // Get total count
         const total = await Book.countDocuments();
 
-        // 5. SEND THE RESPONSE
-        // We put 'page' at the top level so your Postman test passes! [cite: 60, 65]
+        // SEND THE RESPONSE
         res.status(200).json({
             success: true,
             count: books.length,
-            page: page, // This is what your test was looking for!
+            page: page,
             totalPages: Math.ceil(total / limit),
             totalBooks: total,
             data: books

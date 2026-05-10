@@ -28,7 +28,7 @@ const bookSchema = new mongoose.Schema({
         min: [0, 'Available copies cannot be negative']
     }
 }, {
-    timestamps: true // Automatically tracks when a book was added [cite: 47]
+    timestamps: true // Automatically tracks when a book was added
 });
 
 module.exports = mongoose.model('Book', bookSchema);

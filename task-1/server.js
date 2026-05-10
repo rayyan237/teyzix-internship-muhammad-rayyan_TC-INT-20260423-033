@@ -6,7 +6,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 
-// 2. Tell the app to read our secret .env file
+// 2. Tell the app to read our .env file
 dotenv.config();
 
 // 3. Connect to the database
@@ -19,11 +19,6 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/books', require('./routes/bookRoutes'));
-
-// 6. Create a simple test route to make sure it works
-app.get('/', (req, res) => {
-    res.send('Library API is running perfectly!');
-});
 
 // 7. Find the port, and turn the server on
 const PORT = process.env.PORT || 5000;
